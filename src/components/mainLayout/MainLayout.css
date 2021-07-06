@@ -1,0 +1,67 @@
+html{
+    font-size: 1.5vh;
+}
+
+html, #root, .app{
+    height: 100%;
+}
+
+.sider{
+    box-shadow: 0 0 2px rga(0, 0, 0, 0.5)
+}
+
+.content{
+    max-width: 80rem;
+    max-height: 70rem;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.ant-menu-item {
+    display: flex !important;
+    align-items: center;
+}
+
+.ant-menu-inlineCollapsed > .ant-menu-icon{
+    padding: 0 calc(50% - 2rem / 2) !important;
+}
+
+.ant-layout-sider-collapsed .logo{
+    justify-content: center;
+}
+
+.ant-layout-sider-collapsed .logo .icon{
+    margin-right: 0;
+}
+
+.ant-layout-sider-collapsed .logo span{
+    width: 0;
+    opacity: 0;
+}
+
+.header{
+    padding: 0 0.8rem 1.6rem;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 0 2px #eee;
+}
+
+.header-category{
+    display: flex;
+    align-items: center;
+}
+
+.header-category .month-picker{
+    flex-basis: 20rem;
+}
+
+.header-category .ant-statistic{
+    flex-grow: 1;
+}
+.header-category .ant-statistic{
+    flex-grow: 1;
+}
+
+.body{
+    height: calc(100% - 14.5rem);
+    position: relative;
+}

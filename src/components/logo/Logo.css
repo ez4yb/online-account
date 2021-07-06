@@ -1,0 +1,33 @@
+.logo{
+    height: 6.4rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 1.6rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.logo > .icon{
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;;
+}
+
+.logo > span{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.logo-large{
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.logo-large > .icon{
+    width: 4rem;
+    height: 4rem;
+    margin-right: 2rem;
+}
