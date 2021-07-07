@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Layout, Menu, DatePicker, Statistic} from 'antd';
-import Icon from '../icon/Icon';
+import {Icon} from '../icon/Icon';
 import { renderRoutes } from 'react-router-config';
 import { ROUTER_CONFIG } from '../../services/router';
 import { Link, useLocation } from 'react-router-dom';

@@ -1,0 +1,39 @@
+.record{
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.record + .record{
+    border-top: 1px solid rgba(0, 0, 0, 0.06)
+}
+
+.record-icon{
+    height: 3rem;
+    width: 3rem;
+    padding: 2px;
+    border-radius: 50%;
+    background-color: #f0f2f5;
+}
+
+.record-name{
+    margin: 0 2rem;
+}
+
+.record-remark{
+    flex-grow: 1;
+}
+
+.record-action{
+    width: 8rem;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.record__action .icon{
+    height: 2.5rem;
+    width: 2.5rem;
+}

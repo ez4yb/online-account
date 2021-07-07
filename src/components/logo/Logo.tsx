@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import "./Logo.css";
-import Icon from '../icon/Icon';
+import {Icon} from '../icon/Icon';
 
 interface LogoProps{
     size?: 'large' | 'default'
