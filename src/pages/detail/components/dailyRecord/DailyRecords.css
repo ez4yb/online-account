@@ -4,7 +4,7 @@
 
 .daily-records-summary{
     color: rgba(0, 0, 0, 0.45);
-    padding: 0.8rem, 0.6rem;
+    padding: 0.8rem 1.6rem;
     font-size: 1.6rem;
     overflow: hidden;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08)

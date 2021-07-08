@@ -20,7 +20,7 @@ export interface RecordItem{
 
 interface RecordProps extends RecordItem{}
 
-const Record: FC<RecordProps> = ({timeStamp, type, name, price, remark}) => {
+const Record: FC<RecordProps> = ({type, name, price, remark}) => {
     const icon = getIconByName(type, name);
 
     return(
@@ -34,11 +34,11 @@ const Record: FC<RecordProps> = ({timeStamp, type, name, price, remark}) => {
             </div>
             <div className = "record-action">
                 <IconButton 
-                    icon = {'icon-bianji'}
+                    icon = "icon-bianji"
                     onClick = {() => console.log('update')}
                 />
                 <IconButton 
-                    icon = {'icon-shanchu'}
+                    icon = "icon-shanchu"
                     onClick = {() => console.log('delete')}
                 />
             </div>

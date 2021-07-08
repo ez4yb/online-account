@@ -33,13 +33,13 @@ const MainLayout: FC = () => {
             <Content className = "content">
                 <div className = "header">
                     <Logo size = {'large'} />
-                    <div className = {'header-category'}>
+                    <div className = "header-category">
                         <Statistic 
-                            title = {'请选择月份'} 
-                            valueRender = {() => <DatePicker picker = {'month'} />}
+                            title = "请选择月份"
+                            valueRender = {() => <DatePicker picker = "month" />}
                         />
-                        <Statistic title = {'总支出'} value = {10000}/>
-                        <Statistic title = {'总收入'} value = {5000}/>
+                        <Statistic title = "总收入" value = {5000}/>
+                        <Statistic title = "总支出" value = {10000}/>
                     </div>
                 </div> 
                 <div className = "body">

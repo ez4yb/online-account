@@ -7,7 +7,7 @@ export interface Summary{
     totalExpenditure: number;
 }
 
-export interface GroupDailyRecords {
+export interface GroupedDailyRecords {
     timeStamp: number;
     summary: Summary;
     records: RecordItem[];
@@ -29,18 +29,18 @@ export const getSummary = (records: RecordItem[]) : Summary => {
     )
 }
 
-export const groupDailyRecords = (records: RecordItem[]): GroupDailyRecords[] => {
-    const groupDailyRecords = groupBy(records, (record) => {
-        formatTimeStamp(record.timeStamp);
-    })
+export const groupDailyRecords = (records: RecordItem[]): GroupedDailyRecords[] => {
+    const groupedDailyRecords = groupBy(records, (record) => (
+        formatTimeStamp(record.timeStamp)
+    ))
 
     return orderBy(
-        map(Object.keys(groupDailyRecords), (day) => {
-            const dailyRecords = groupDailyRecords[day]
+        map(Object.keys(groupedDailyRecords), (day) => {
+            const dailyRecords = groupedDailyRecords[day]
             const summary = getSummary(dailyRecords)
             return{
-                timeStamp: dailyRecords[0].timeStamp,
                 summary,
+                timeStamp: dailyRecords[0].timeStamp,
                 records: orderBy(dailyRecords, ['timeStamp'], ['desc'])
             }
         }),

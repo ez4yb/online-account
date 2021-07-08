@@ -1,0 +1,20 @@
+.detail-page{
+    height: 100%;
+    position: relative;
+}
+
+.detail-page-header{
+    right: 2rem;
+    top: -4.5rem;
+    position: absolute;
+}
+
+.detail-page-add-btn .icon{
+    height: 3rem;
+    width: 3rem;
+}
+
+.detail-page-content{
+    height: 100%;
+    overflow-y: auto;
+}
