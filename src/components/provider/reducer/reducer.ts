@@ -1,5 +1,6 @@
 import moment, {Moment} from "moment";
 import { RecordItem, RecordType } from "../../../pages/detail/components/record/Record";
+import { isSameMonth } from "../../../services/dateHelper";
 import { Action, ActionType } from "./action";
 
 export interface State{
@@ -59,14 +60,20 @@ const reducer  = (state: State, action: ActionType) => {
         case Action.ADD_RECORD:
             return{
                 ...state,
-                monthlyRecords: state.monthlyRecords.concat(action.record)
+                monthlyRecords: isSameMonth(action.record.timeStamp, state.month) 
+                ? state.monthlyRecords.concat(action.record) 
+                : state.monthlyRecords
             }
         case Action.UPDATE_RECORD:
             return {
                 ...state,
-                monthlyRecords: state.monthlyRecords.map(item => 
+                
+                monthlyRecords: isSameMonth(action.record.timeStamp, state.month)
+                ? 
+                state.monthlyRecords.map(item => 
                     item.id === action.record.id ? action.record : item
                 )
+                : state.monthlyRecords.filter(item => item.id !== action.record.id)
             }
         case Action.DELETE_RECORD:
             return{
@@ -74,6 +81,11 @@ const reducer  = (state: State, action: ActionType) => {
                 monthlyRecords: state.monthlyRecords.filter(item => (
                     item.id !== action.recordId
                 ))
+            }
+        case Action.UPDATE_MONTHLY_RECORDS:
+            return{
+                ...state,
+                monthlyRecords: action.records
             }
         default:
             return state;

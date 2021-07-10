@@ -7,8 +7,7 @@ import './DetailPage.css';
 import { useContext, useState  } from 'react';
 import { Context } from '../../components/provider/Provider';
 import RecordModal, { NewRecordItem } from './components/recordModal/RecordModal';
-import { addRecord, deleteRecord, updateRecord } from '../../components/provider/reducer/action';
-
+import { createNewRecordAsync, deleteRecordAsync, updateRecordAsync } from '../../components/provider/reducer/asyncActions';
 
 
 const DetailPage: FC = () => {
@@ -22,15 +21,15 @@ const DetailPage: FC = () => {
     }
 
     const onAddRecord = (record: NewRecordItem) => {
-        dispatch(addRecord({...record, id : record.timeStamp}))
+        dispatch(createNewRecordAsync(record))
     }
 
     const onUpdateRecord = (record: RecordItem) => {
-        dispatch(updateRecord(record))
+        dispatch(updateRecordAsync(record))
     }
 
     const onDeleteRecord = (recordId: number) => {
-        dispatch(deleteRecord(recordId))
+        dispatch(deleteRecordAsync(recordId))
     }
     
     const onOpenUpdateModal = (id: number) => {

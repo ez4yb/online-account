@@ -37,8 +37,16 @@ export const deleteRecord = (recordId: number) => (
     } as const
 )
 
+export const updateMonthlyRecords = (records: RecordItem[]) => (
+    {
+        type: Action.UPDATE_MONTHLY_RECORDS,
+        records
+    }as const
+)
+
 export type ActionType = 
 | ReturnType<typeof updateMonth> 
 | ReturnType<typeof addRecord> 
 | ReturnType<typeof updateRecord>
 | ReturnType<typeof deleteRecord>
+| ReturnType<typeof updateMonthlyRecords>
