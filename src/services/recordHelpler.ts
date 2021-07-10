@@ -1,5 +1,5 @@
 import { groupBy, map, orderBy, reduce} from "lodash";
-import { RecordItem, RecordType } from "../pages/detail/components/Record";
+import { RecordItem, RecordType } from "../pages/detail/components/record/Record";
 import { formatTimeStamp } from "./dateHelper";
 
 export interface Summary{

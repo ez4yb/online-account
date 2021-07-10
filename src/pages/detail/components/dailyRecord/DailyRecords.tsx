@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import { GroupedDailyRecords } from "../../../../services/recordHelpler";
 import { DateFormat, formatTimeStamp } from "../../../../services/dateHelper";
-import Record from '../Record'
+import Record from '../record/Record'
 import './DailyRecords.css';
 
 interface DailyRecordsProps extends GroupedDailyRecords {}

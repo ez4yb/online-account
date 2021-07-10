@@ -1,22 +1,27 @@
 import React, {FC} from 'react';
-import { RecordType } from './components/Record';
+import { RecordType } from './components/record/Record';
 import { IconButton } from '../../components/icon/Icon';
 import DailyRecords from './components/dailyRecord/DailyRecords';
 import { groupDailyRecords } from '../../services/recordHelpler';
 import './DetailPage.css';
 import { useContext, useState  } from 'react';
 import { Context } from '../../components/provider/Provider';
-import RecordModal from './components/recordModel/RecordModel';
+import RecordModal, { NewRecordItem } from './components/recordModal/RecordModal';
+import { addRecord } from '../../components/provider/reducer/action';
 
 
 
 const DetailPage: FC = () => {
     const [visible, setVisible] = useState(false);
-    const {state} = useContext(Context)
+    const {state, dispatch} = useContext(Context)
 	const groupedDailyRecords = groupDailyRecords(state.monthlyRecords);
 
     const onToggleVisible = () => {
         setVisible(!visible);
+    }
+
+    const onAddRecord = (record: NewRecordItem) => {
+        dispatch(addRecord({...record, id : record.timeStamp}))
     }
 
     return(
@@ -33,7 +38,7 @@ const DetailPage: FC = () => {
 					<DailyRecords key = {daily.timeStamp} {...daily} />
 				))}
             </div>
-            <RecordModal visible = {visible} onClose = {onToggleVisible}/>
+            <RecordModal visible = {visible} onClose = {onToggleVisible} onAddRecord = {onAddRecord}/>
         </div>
     )
 }

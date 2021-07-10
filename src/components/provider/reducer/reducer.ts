@@ -1,5 +1,5 @@
 import moment, {Moment} from "moment";
-import { RecordItem, RecordType } from "../../../pages/detail/components/Record";
+import { RecordItem, RecordType } from "../../../pages/detail/components/record/Record";
 import { Action, ActionType } from "./action";
 
 export interface State{
@@ -55,6 +55,11 @@ const reducer  = (state: State, action: ActionType) => {
             return{
                 ...state,
                 month: action.month
+            }
+        case Action.ADD_RECORD:
+            return{
+                ...state,
+                monthlyRecords: state.monthlyRecords.concat(action.record)
             }
         default:
             return state;

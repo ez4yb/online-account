@@ -1,5 +1,5 @@
 import { Moment } from "moment";
-import { RecordItem } from "../../../pages/detail/components/Record";
+import { RecordItem } from "../../../pages/detail/components/record/Record";
 
 export enum Action{
     ADD_RECORD = 'add_record',
@@ -16,4 +16,11 @@ export const updateMonth = (month: Moment) => (
     }as const
 )
 
-export type ActionType = ReturnType<typeof updateMonth>
+export const addRecord = (record: RecordItem) => (
+    {
+        type: Action.ADD_RECORD,
+        record
+    } as const
+)
+
+export type ActionType = ReturnType<typeof updateMonth> | ReturnType<typeof addRecord>

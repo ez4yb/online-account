@@ -22,8 +22,8 @@
     height: 3rem;
 }
 
-.record-modal .ant-btn-icon-only .active{
-    background-color: #c5c4c4;
+.record-modal .ant-btn-icon-only.active{
+    background-color:#c5c4c4;
 }
 
 .record-modal__list{

@@ -1,6 +1,6 @@
 import React, {FC} from "react";
-import {Icon, IconButton} from "../../../components/icon/Icon";
-import { getIconByName } from "../../../services/iconSelector/iconSelector";
+import {Icon, IconButton} from "../../../../components/icon/Icon";
+import { getIconByName } from "../../../../services/iconSelector/iconSelector";
 import './Record.css';
 
 export enum RecordType{
