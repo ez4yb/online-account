@@ -2,8 +2,8 @@ import React, {FC} from "react";
 import { Input, Modal, Tabs, message } from "antd";
 import LocaleDatePicker from "../../../../components/localDatePicker/LocalDatePicker";
 import {RecordType, RecordItem} from '../record/Record';
-import {Moment} from "moment";
-import { useReducer } from "react";
+import moment, {Moment} from "moment";
+import { useReducer, useEffect } from "react";
 import classnames from "classnames";
 import { EXPENDITURE_ICON_LIST, INCOME_ICON_LIST } from "../../../../constans";
 import { IconButton } from "../../../../components/icon/Icon";
@@ -13,15 +13,16 @@ export type NewRecordItem = Omit<RecordItem, 'id'>
 
 interface RecordModalProps{
     visible: boolean;
+    updateRecord?: RecordItem
     onClose: () => void;
-    onAddRecord: (record: NewRecordItem) => void;
+    onProcessRecord: ((record: NewRecordItem) => void) | ((record: RecordItem) => void)
 }
 
 interface Values extends Omit<RecordItem, 'id' | 'timeStamp'>{
     month: Moment
 }
 
-const RecordModal: FC<RecordModalProps>  = ({visible, onClose, onAddRecord})=> {
+const RecordModal: FC<RecordModalProps>  = ({visible, updateRecord, onClose, onProcessRecord})=> {
     //Partial将定义类型所有的属性都修改为可选
     const [values, dispatch] = useReducer((state: Values, update: Partial<Values>) => 
         ({...state, ...update}),
@@ -43,12 +44,11 @@ const RecordModal: FC<RecordModalProps>  = ({visible, onClose, onAddRecord})=> {
     const onRemarkChange = (remark: string) => {
         dispatch({remark});
     }
-
-    
-    const getNewRecordItem = ({month, price, ...props}: Values): NewRecordItem => {
+  
+    const getNewRecordItem = ({month, price, ...props}: Values): NewRecordItem | RecordItem => {
         const timeStamp = month.valueOf();
         const normalizedPrice = Math.abs(values.price);
-        return {...props, timeStamp, price: normalizedPrice};
+        return {...updateRecord, ...props, timeStamp, price: normalizedPrice};
     }
 
     const onSubmit = () => {
@@ -67,11 +67,30 @@ const RecordModal: FC<RecordModalProps>  = ({visible, onClose, onAddRecord})=> {
             return;
         }
 
-        message.success('创建成功')
-        onAddRecord(getNewRecordItem(values));
+        message.success('提交成功')
+        onProcessRecord(getNewRecordItem(values) as RecordItem);
         onClose();
         return;
     }
+
+    useEffect(() => {
+        if(!visible){
+            return;
+        }
+
+        if(updateRecord){
+            const {id, timeStamp, ...props} = updateRecord;
+            dispatch({...props, month: moment(timeStamp)})
+        }else{
+            dispatch({
+                type: RecordType.Expenditure,
+                month: moment(),
+                name: '',
+                price: undefined,
+                remark: ''
+            })
+        }
+    }, [visible, updateRecord])
 
     return (
         <Modal

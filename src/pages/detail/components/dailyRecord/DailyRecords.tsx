@@ -4,9 +4,12 @@ import { DateFormat, formatTimeStamp } from "../../../../services/dateHelper";
 import Record from '../record/Record'
 import './DailyRecords.css';
 
-interface DailyRecordsProps extends GroupedDailyRecords {}
+interface DailyRecordsProps extends GroupedDailyRecords {
+    onOpenUpdateModal: (id: number) => void
+    onDeleteRecord: (id: number) => void
+}
 
-const DailyRecords: FC<DailyRecordsProps> = ({records, summary, timeStamp}) =>{
+const DailyRecords: FC<DailyRecordsProps> = ({records, summary, timeStamp, onOpenUpdateModal, onDeleteRecord}) =>{
     return(
         <div className = "daily-records">
             <div className = "daily-records-summary">
@@ -26,7 +29,12 @@ const DailyRecords: FC<DailyRecordsProps> = ({records, summary, timeStamp}) =>{
             </div>
             <div className = "records">
                 {records.map(record => (
-                    <Record key = {record.timeStamp} {...record} />
+                    <Record 
+                        key = {record.timeStamp} 
+                        {...record} 
+                        onOpenUpdateModal = {onOpenUpdateModal} 
+                        onDeleteRecord = {onDeleteRecord}
+                    />
                 ))}
             </div>
         </div>

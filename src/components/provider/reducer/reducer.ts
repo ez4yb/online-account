@@ -61,6 +61,20 @@ const reducer  = (state: State, action: ActionType) => {
                 ...state,
                 monthlyRecords: state.monthlyRecords.concat(action.record)
             }
+        case Action.UPDATE_RECORD:
+            return {
+                ...state,
+                monthlyRecords: state.monthlyRecords.map(item => 
+                    item.id === action.record.id ? action.record : item
+                )
+            }
+        case Action.DELETE_RECORD:
+            return{
+                ...state,
+                monthlyRecords: state.monthlyRecords.filter(item => (
+                    item.id !== action.recordId
+                ))
+            }
         default:
             return state;
     }

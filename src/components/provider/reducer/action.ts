@@ -23,4 +23,22 @@ export const addRecord = (record: RecordItem) => (
     } as const
 )
 
-export type ActionType = ReturnType<typeof updateMonth> | ReturnType<typeof addRecord>
+export const updateRecord = (record: RecordItem) => (
+    {
+        type: Action.UPDATE_RECORD,
+        record
+    } as const 
+)
+
+export const deleteRecord = (recordId: number) => (
+    {
+        type: Action.DELETE_RECORD,
+        recordId
+    } as const
+)
+
+export type ActionType = 
+| ReturnType<typeof updateMonth> 
+| ReturnType<typeof addRecord> 
+| ReturnType<typeof updateRecord>
+| ReturnType<typeof deleteRecord>

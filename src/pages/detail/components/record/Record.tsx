@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import {Icon, IconButton} from "../../../../components/icon/Icon";
+import { Popconfirm } from "antd";
 import { getIconByName } from "../../../../services/iconSelector/iconSelector";
 import './Record.css';
 
@@ -18,9 +19,12 @@ export interface RecordItem{
     remark?: string;
 }
 
-interface RecordProps extends RecordItem{}
+interface RecordProps extends RecordItem{
+    onOpenUpdateModal: (id: number) => void;
+    onDeleteRecord: (id: number) => void;
+}
 
-const Record: FC<RecordProps> = ({type, name, price, remark}) => {
+const Record: FC<RecordProps> = ({id, type, name, price, remark, onOpenUpdateModal, onDeleteRecord}) => {
     const icon = getIconByName(type, name);
 
     return(
@@ -35,12 +39,19 @@ const Record: FC<RecordProps> = ({type, name, price, remark}) => {
             <div className = "record-action">
                 <IconButton 
                     icon = "icon-bianji"
-                    onClick = {() => console.log('update')}
+                    onClick = {() => {onOpenUpdateModal(id)}}
                 />
-                <IconButton 
-                    icon = "icon-shanchu"
-                    onClick = {() => console.log('delete')}
-                />
+                <Popconfirm
+                    title = "确定要删除这条记录吗"
+                    onConfirm = {() => {onDeleteRecord(id)}}
+                    okText = "确认"
+                    cancelText = "取消"
+                >
+                    <IconButton 
+                        icon = "icon-shanchu"
+                        onClick = {() => console.log('delete')}
+                    />
+                </Popconfirm>
             </div>
         </div>
     )
