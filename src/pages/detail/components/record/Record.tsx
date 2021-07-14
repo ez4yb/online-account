@@ -10,7 +10,7 @@ export enum RecordType{
 }
 
 export interface RecordItem{
-    id: number;
+    _id: String;
     timeStamp: number;
     type: RecordType;
     name: string;
@@ -20,11 +20,11 @@ export interface RecordItem{
 }
 
 interface RecordProps extends RecordItem{
-    onOpenUpdateModal: (id: number) => void;
-    onDeleteRecord: (id: number) => void;
+    onOpenUpdateModal: (_id: String) => void;
+    onDeleteRecord: (_id: String) => void;
 }
 
-const Record: FC<RecordProps> = ({id, type, name, price, remark, onOpenUpdateModal, onDeleteRecord}) => {
+const Record: FC<RecordProps> = ({_id, type, name, price, remark, onOpenUpdateModal, onDeleteRecord}) => {
     const icon = getIconByName(type, name);
 
     return(
@@ -39,11 +39,11 @@ const Record: FC<RecordProps> = ({id, type, name, price, remark, onOpenUpdateMod
             <div className = "record-action">
                 <IconButton 
                     icon = "icon-bianji"
-                    onClick = {() => {onOpenUpdateModal(id)}}
+                    onClick = {() => {onOpenUpdateModal(_id)}}
                 />
                 <Popconfirm
                     title = "确定要删除这条记录吗"
-                    onConfirm = {() => {onDeleteRecord(id)}}
+                    onConfirm = {() => {onDeleteRecord(_id)}}
                     okText = "确认"
                     cancelText = "取消"
                 >

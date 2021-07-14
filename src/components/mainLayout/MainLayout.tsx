@@ -32,7 +32,7 @@ const MainLayout: FC = () => {
             <Sider className = "sider" theme = "light" collapsible>
                 <Logo />
                 <Menu defaultSelectedKeys = {[pathname]}>
-                    <Item key = "/" icon = {<Icon icon = {'icon-zhuye'}/>}>
+                    <Item key = "detail" icon = {<Icon icon = {'icon-zhuye'}/>}>
                         <Link to = "/">
                             明细
                         </Link>

@@ -12,7 +12,7 @@ import { createNewRecordAsync, deleteRecordAsync, updateRecordAsync } from '../.
 
 const DetailPage: FC = () => {
     const [visible, setVisible] = useState(false);
-    const [updateRecordId, setUpdateRecordId] = useState<number>()
+    const [updateRecordId, setUpdateRecordId] = useState<String>()
     const {state, dispatch} = useContext(Context);
 	const groupedDailyRecords = groupDailyRecords(state.monthlyRecords);
 
@@ -28,16 +28,16 @@ const DetailPage: FC = () => {
         dispatch(updateRecordAsync(record))
     }
 
-    const onDeleteRecord = (recordId: number) => {
+    const onDeleteRecord = (recordId: String) => {
         dispatch(deleteRecordAsync(recordId))
     }
     
-    const onOpenUpdateModal = (id: number) => {
-        setUpdateRecordId(id);
+    const onOpenUpdateModal = (_id: String) => {
+        setUpdateRecordId(_id);
         setVisible(true);
     }
 
-    const target = updateRecordId ? state.monthlyRecords.find(item => item.id === updateRecordId) : undefined;
+    const target = updateRecordId ? state.monthlyRecords.find(item => item._id === updateRecordId) : undefined;
 
     return(
         <div className = "detail-page">

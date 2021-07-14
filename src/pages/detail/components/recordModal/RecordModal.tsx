@@ -9,7 +9,7 @@ import { EXPENDITURE_ICON_LIST, INCOME_ICON_LIST } from "../../../../constans";
 import { IconButton } from "../../../../components/icon/Icon";
 import './RecordModal.css'
 
-export type NewRecordItem = Omit<RecordItem, 'id'>
+export type NewRecordItem = Omit<RecordItem, '_id'>
 
 interface RecordModalProps{
     visible: boolean;
@@ -18,7 +18,7 @@ interface RecordModalProps{
     onProcessRecord: ((record: NewRecordItem) => void) | ((record: RecordItem) => void)
 }
 
-interface Values extends Omit<RecordItem, 'id' | 'timeStamp'>{
+interface Values extends Omit<RecordItem, '_id' | 'timeStamp'>{
     month: Moment
 }
 
@@ -79,7 +79,7 @@ const RecordModal: FC<RecordModalProps>  = ({visible, updateRecord, onClose, onP
         }
 
         if(updateRecord){
-            const {id, timeStamp, ...props} = updateRecord;
+            const {_id, timeStamp, ...props} = updateRecord;
             dispatch({...props, month: moment(timeStamp)})
         }else{
             dispatch({

@@ -2,29 +2,30 @@ import axios from "axios";
 import { NewRecordItem } from "../pages/detail/components/recordModal/RecordModal";
 import { RecordItem } from "../pages/detail/components/record/Record";
 
-axios.interceptors.response.use((response) => response.data)
-//获取每个时间段内的账单数据
+axios.interceptors.response.use((response) => response.data);
+
 export const getRecordsBetweenRangeUsingGet = (start: number, end: number) => {
     return axios.get<any, RecordItem[]>(
-        `api/records?timeStamp_gte=${start}&timeStamp_lte=${end}`
+        `https://qc2xts.fn.thelarkcloud.com/getRecords?timeStamp_gte=${start}&timeStamp_lte=${end}`
     )
 }
-//新建账单
+
 export const createNewRecordUsingPost = (record: NewRecordItem) => {
     return axios.post<any, RecordItem>(
-        `api/records`, record
+        `https://qc2xts.fn.thelarkcloud.com/createRecord`, 
+        record
     )
 }
 
-//更新某个账单
 export const updateRecordUsingPut = (record: RecordItem) => {
     return axios.put<any, RecordItem>(
-        `api/records/${record.id}`, record
+        `https://qc2xts.fn.thelarkcloud.com/updateRecord`,
+        record
     )
 }
 
-export const deleteRecordUsingDelete = (recordId: number) => {
+export const deleteRecordUsingDelete = (recordId: String) => {
     return axios.delete<any, RecordItem>(
-        `api/records/${recordId}`
+        `https://qc2xts.fn.thelarkcloud.com/deleteRecord?id=${recordId}`
     )
 }

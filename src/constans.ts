@@ -1,4 +1,3 @@
-//Icon 接口，包含名字和对应 id
 interface Icon {
     name: string
     icon: string

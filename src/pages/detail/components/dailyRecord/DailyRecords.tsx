@@ -5,8 +5,8 @@ import Record from '../record/Record'
 import './DailyRecords.css';
 
 interface DailyRecordsProps extends GroupedDailyRecords {
-    onOpenUpdateModal: (id: number) => void
-    onDeleteRecord: (id: number) => void
+    onOpenUpdateModal: (_id: String) => void
+    onDeleteRecord: (_id: String) => void
 }
 
 const DailyRecords: FC<DailyRecordsProps> = ({records, summary, timeStamp, onOpenUpdateModal, onDeleteRecord}) =>{

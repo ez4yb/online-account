@@ -1,5 +1,5 @@
 import moment, {Moment} from "moment";
-import { RecordItem, RecordType } from "../../../pages/detail/components/record/Record";
+import { RecordItem} from "../../../pages/detail/components/record/Record";
 import { isSameMonth } from "../../../services/dateHelper";
 import { Action, ActionType } from "./action";
 
@@ -10,44 +10,7 @@ export interface State{
 
 export const defaultState: State = {
     month: moment(),
-    monthlyRecords:[{
-            timeStamp: 1613477254556, 
-            name: '餐饮',
-            type: RecordType.Expenditure,
-            price: 100,
-            remark: '请人吃饭',
-            id: 1,
-        },
-        {
-            timeStamp: 1612969810000, 
-            type: RecordType.Expenditure,
-            name: '购物',
-            price: 200,
-            id: 2,
-        },
-        {
-            timeStamp: 1612969810000, 
-            type: RecordType.Expenditure,
-            name: '蔬菜',
-            price: 20,
-            id: 3,
-        },
-        {
-            timeStamp: 1613477254556, 
-            type: RecordType.Expenditure,
-            name: '宠物',
-            price: 200,
-            id: 4,
-        },
-        {
-            timeStamp: 1613477254556, 
-            type: RecordType.Income,
-            name: '工资',
-            price: 10000,
-            remark: '这可是血汗钱啊',
-            id: 5,
-        },
-    ],
+    monthlyRecords:[]
 }
 
 const reducer  = (state: State, action: ActionType) => {
@@ -71,15 +34,15 @@ const reducer  = (state: State, action: ActionType) => {
                 monthlyRecords: isSameMonth(action.record.timeStamp, state.month)
                 ? 
                 state.monthlyRecords.map(item => 
-                    item.id === action.record.id ? action.record : item
+                    item._id === action.record._id ? action.record : item
                 )
-                : state.monthlyRecords.filter(item => item.id !== action.record.id)
+                : state.monthlyRecords.filter(item => item._id !== action.record._id)
             }
         case Action.DELETE_RECORD:
             return{
                 ...state,
                 monthlyRecords: state.monthlyRecords.filter(item => (
-                    item.id !== action.recordId
+                    item._id !== action.recordId
                 ))
             }
         case Action.UPDATE_MONTHLY_RECORDS:
