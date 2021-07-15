@@ -1,0 +1,24 @@
+.chart-page{
+    height: 100%;
+    position: relative;
+}
+
+.chart-page__header{
+    right: 3rem;
+    top: -4.2rem;
+    position: absolute;
+}
+
+.chart-page__content{
+    height: 100%;
+    overflow-y: auto;
+    padding: 0.8rem;
+}
+
+.chart-page .ant-card{
+    margin: 1.6rem 0;
+}
+
+.chart-page .ant-card-body{
+    padding: 1.6rem 0;
+}
