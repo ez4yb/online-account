@@ -25,7 +25,11 @@ export const updateRecordUsingPut = (record: RecordItem) => {
 }
 
 export const deleteRecordUsingDelete = (recordId: string) => {
-    return axios.delete<any, RecordItem>(
-        `https://qc2xts.fn.thelarkcloud.com/deleteRecord?_id=${recordId}`
-    )
+    return axios({
+        method: 'DELETE',
+        url: `https://qc2xts.fn.thelarkcloud.com/deleteRecord`,
+        data: {
+            _id: recordId
+        }
+    })
 }
