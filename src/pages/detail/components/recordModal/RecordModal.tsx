@@ -18,7 +18,8 @@ interface RecordModalProps{
     onProcessRecord: ((record: NewRecordItem) => void) | ((record: RecordItem) => void)
 }
 
-interface Values extends Omit<RecordItem, '_id' | 'timeStamp'>{
+interface Values extends Omit<RecordItem, '_id' | 'timeStamp' | 'price'>{
+    price: any
     month: Moment
 }
 
@@ -37,7 +38,7 @@ const RecordModal: FC<RecordModalProps>  = ({visible, updateRecord, onClose, onP
         dispatch({month});
     }
 
-    const onPriceChange = (price: number) => {
+    const onPriceChange = (price: string) => {
         dispatch({price});
     }
 
@@ -47,7 +48,7 @@ const RecordModal: FC<RecordModalProps>  = ({visible, updateRecord, onClose, onP
   
     const getNewRecordItem = ({month, price, ...props}: Values): NewRecordItem | RecordItem => {
         const timeStamp = month.valueOf();
-        const normalizedPrice = Math.abs(values.price);
+        const normalizedPrice = Math.abs(parseInt(values.price));
         return {...updateRecord, ...props, timeStamp, price: normalizedPrice};
     }
 
@@ -77,7 +78,6 @@ const RecordModal: FC<RecordModalProps>  = ({visible, updateRecord, onClose, onP
         if(!visible){
             return;
         }
-
         if(updateRecord){
             const {_id, timeStamp, ...props} = updateRecord;
             dispatch({...props, month: moment(timeStamp)})
@@ -90,7 +90,8 @@ const RecordModal: FC<RecordModalProps>  = ({visible, updateRecord, onClose, onP
                 remark: ''
             })
         }
-    }, [visible, updateRecord])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [visible])
 
     return (
         <Modal
@@ -150,8 +151,8 @@ const RecordModal: FC<RecordModalProps>  = ({visible, updateRecord, onClose, onP
                                 placeholder = "请输入金额"
                                 // suffix="元"
                                 type = "number" 
-                                value = {values.price}
-                                onChange = {e => onPriceChange(parseInt(e.target.value))}
+                                value = {isNaN(values.price) ? '' : String(values.price)}
+                                onChange = {e => onPriceChange(e.target.value)}
                             />
                         </div>
                         <div className = {'record-modal__list__item'}>

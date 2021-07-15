@@ -30,7 +30,7 @@ export const updateRecord = (record: RecordItem) => (
     } as const 
 )
 
-export const deleteRecord = (recordId: String) => (
+export const deleteRecord = (recordId: string) => (
     {
         type: Action.DELETE_RECORD,
         recordId

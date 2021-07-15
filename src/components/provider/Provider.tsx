@@ -14,7 +14,8 @@ export const Provider: FC = ({children}) => {
 
     useEffect(() => {
         store.dispatch(fetchRecordsAsync(store.state.month))
-    }, [store])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [store.state.month])
 
     return(
         <Context.Provider value = {store}>{children}</Context.Provider>

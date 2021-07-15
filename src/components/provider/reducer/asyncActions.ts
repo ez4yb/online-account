@@ -39,7 +39,7 @@ export const updateRecordAsync = (record: RecordItem) => async(
     dispatch(updateRecord(updated))
 }
 
-export const deleteRecordAsync = (recordId: String) => async(
+export const deleteRecordAsync = (recordId: string) => async(
     dispatch: Dispatch<ActionType>
 ) => {
     await deleteRecordUsingDelete(recordId);

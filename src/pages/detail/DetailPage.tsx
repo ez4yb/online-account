@@ -8,11 +8,12 @@ import { useContext, useState  } from 'react';
 import { Context } from '../../components/provider/Provider';
 import RecordModal, { NewRecordItem } from './components/recordModal/RecordModal';
 import { createNewRecordAsync, deleteRecordAsync, updateRecordAsync } from '../../components/provider/reducer/asyncActions';
+import { useEffect } from 'react';
 
 
 const DetailPage: FC = () => {
     const [visible, setVisible] = useState(false);
-    const [updateRecordId, setUpdateRecordId] = useState<String>()
+    const [updateRecordId, setUpdateRecordId] = useState<string>()
     const {state, dispatch} = useContext(Context);
 	const groupedDailyRecords = groupDailyRecords(state.monthlyRecords);
 
@@ -28,16 +29,22 @@ const DetailPage: FC = () => {
         dispatch(updateRecordAsync(record))
     }
 
-    const onDeleteRecord = (recordId: String) => {
+    const onDeleteRecord = (recordId: string) => {
         dispatch(deleteRecordAsync(recordId))
     }
     
-    const onOpenUpdateModal = (_id: String) => {
+    const onOpenUpdateModal = (_id: string) => {
         setUpdateRecordId(_id);
         setVisible(true);
     }
 
     const target = updateRecordId ? state.monthlyRecords.find(item => item._id === updateRecordId) : undefined;
+    useEffect(() => {
+        if(visible){
+            return;
+        }
+        setUpdateRecordId(undefined);
+    }, [visible]);
 
     return(
         <div className = "detail-page">
