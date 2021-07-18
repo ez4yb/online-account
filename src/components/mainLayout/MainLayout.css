@@ -66,3 +66,14 @@ html, #root, .app{
     height: calc(100% - 14.5rem);
     position: relative;
 }
+
+.ant-spin{
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}

@@ -1,5 +1,5 @@
 import React, {FC, Suspense} from 'react';
-import {Layout, Menu, Statistic} from 'antd';
+import {Layout, Menu, Statistic, Spin} from 'antd';
 import {Icon} from '../icon/Icon';
 import { renderRoutes } from 'react-router-config';
 import { ROUTER_CONFIG } from '../../services/router';
@@ -57,7 +57,7 @@ const MainLayout: FC = () => {
                     </div>
                 </div> 
                 <div className = "body">
-                    <Suspense fallback = {<div>loading</div>}>
+                    <Suspense fallback = {<Spin />}>
                         {renderRoutes(ROUTER_CONFIG)}
                     </Suspense>
                 </div>
