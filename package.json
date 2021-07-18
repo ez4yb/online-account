@@ -13,10 +13,13 @@
     "@types/react-dom": "^17.0.0",
     "antd": "^4.16.6",
     "axios": "^0.21.1",
+    "babel-plugin-import": "^1.13.3",
     "classnames": "^2.3.1",
+    "customize-cra": "^1.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "react": "^17.0.2",
+    "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.2",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
@@ -26,10 +29,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "homepage": "./",
   "eslintConfig": {

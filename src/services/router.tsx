@@ -1,7 +1,9 @@
+import React from 'react';
 import {RouteConfig} from 'react-router-config';
 import { Redirect } from 'react-router';
-import ChartPage from '../pages/chart/ChartPage';
 import DetailPage from '../pages/detail/DetailPage';
+const ChartPage = React.lazy(() => import('../pages/chart/ChartPage'));
+
 
 export const ROUTER_CONFIG: RouteConfig[] = [
     {

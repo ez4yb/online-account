@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, Suspense} from 'react';
 import {Layout, Menu, Statistic} from 'antd';
 import {Icon} from '../icon/Icon';
 import { renderRoutes } from 'react-router-config';
@@ -57,7 +57,9 @@ const MainLayout: FC = () => {
                     </div>
                 </div> 
                 <div className = "body">
-                    {renderRoutes(ROUTER_CONFIG)}
+                    <Suspense fallback = {<div>loading</div>}>
+                        {renderRoutes(ROUTER_CONFIG)}
+                    </Suspense>
                 </div>
             </Content>
         </Layout>
