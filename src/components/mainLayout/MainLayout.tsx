@@ -52,8 +52,8 @@ const MainLayout: FC = () => {
                             title = "请选择月份"
                             valueRender = {() => <LocaleDatePicker value = {state.month} onChange = {onMonthChange}/>}
                         />
-                        <Statistic title = "总收入" value = {monthlySummary.totalIncome}/>
-                        <Statistic title = "总支出" value = {monthlySummary.totalExpenditure}/>
+                        <Statistic title = "总收入" prefix = '¥' value = {monthlySummary.totalIncome}/>
+                        <Statistic title = "总支出" prefix = '¥' value = {monthlySummary.totalExpenditure}/>
                     </div>
                 </div> 
                 <div className = "body">
