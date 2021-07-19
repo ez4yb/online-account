@@ -28,7 +28,7 @@ const MainLayout: FC = () => {
     //获取当前页面的path
     const {pathname} = useLocation();
     return (
-        <Layout className = "app">
+        <Layout className = "app" hasSider = {true}>
             <Sider className = "sider" theme = "light" collapsible>
                 <Logo />
                 <Menu defaultSelectedKeys = {[pathname]}>

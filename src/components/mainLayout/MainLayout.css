@@ -7,10 +7,11 @@ html, #root, .app{
 }
 
 .sider{
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5)
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5)
 }
 
 .content{
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
     max-width: 80rem;
     min-width: 65rem;
     margin: 0 auto;
@@ -22,7 +23,7 @@ html, #root, .app{
     align-items: center;
 }
 
-.ant-menu-inlineCollapsed > .ant-menu-icon{
+.ant-menu-inline-collapsed > .ant-menu-icon{
     padding: 0 calc(50% - 2rem / 2) !important;
 }
 
