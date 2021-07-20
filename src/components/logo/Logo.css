@@ -33,7 +33,7 @@
 }
 
 .logo{
-    animation: logo 1.5s ease-in 0s 1 normal forwards;
+    animation: logo 1s ease-in 0s 1 normal forwards;
 }
 
 @keyframes logo{

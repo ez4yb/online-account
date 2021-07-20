@@ -7,67 +7,77 @@
 #### 项目结构:
 
 ```text
+│  App.css
+│  App.tsx
+│  constans.ts
+│  index.tsx
+│  react-app-env.d.ts
+│  setupTests.ts
+│
 ├─components
+│  ├─animateNumber
+│  │      AnimateNumber.tsx
+│  │
 │  ├─icon
 │  │      Icon.css
 │  │      Icon.tsx
-│  │      
+│  │
 │  ├─localDatePicker
 │  │      LoaclDatePicker.css
 │  │      LocalDatePicker.tsx
-│  │      
+│  │
 │  ├─logo
 │  │      Logo.css
 │  │      Logo.tsx
-│  │      
+│  │
 │  ├─mainLayout
 │  │      MainLayout.css
 │  │      MainLayout.tsx
-│  │      
+│  │
 │  └─provider
 │      │  Provider.tsx
-│      │  
+│      │
 │      └─reducer
 │              action.ts
 │              asyncActions.ts
 │              reducer.ts
 │              useCustomizedReducer.ts
-│              
+│
 ├─pages
 │  ├─chart
 │  │  │  ChartPage.css
 │  │  │  ChartPage.tsx
-│  │  │  
+│  │  │
 │  │  └─components
 │  │      ├─linechart
 │  │      │      lineChartInMonth.tsx
-│  │      │      
+│  │      │
 │  │      └─piechart
 │  │              pieChartInMonth.tsx
-│  │              
+│  │
 │  └─detail
 │      │  DetailPage.css
 │      │  DetailPage.tsx
-│      │  
+│      │
 │      └─components
 │          ├─dailyRecord
 │          │      DailyRecords.css
 │          │      DailyRecords.tsx
-│          │      
+│          │
 │          ├─record
 │          │      Record.css
 │          │      Record.tsx
-│          │      
+│          │
 │          └─recordModal
 │                  RecordModal.css
 │                  RecordModal.tsx
-│                  
+│
 └─services
     │  client.ts
     │  dateHelper.ts
     │  recordHelpler.ts
     │  router.tsx
-    │  
+    │
     └─iconSelector
             iconSelector.ts
 ```
@@ -109,4 +119,24 @@
 ![](./imgForREADME/4.png)
 
 遂给Layout加了个属性`hasSider = {true}`，问题就这么解决了。这个问题不像应该官方文档说的这样，只有服务端渲染才会出现。
+
+
+
+4. 还是Layout Shift
+
+当统计金额增加时，金额会瞬间变为目标值，进位(长度增加)时更是会导致同在一个flex box的title移位，这个问题在首屏加载时很明显:![](./imgForREADME/5.png)
+
+打开Layout Shift Regions可以看到被标记的蓝色区域：
+
+![](./imgForREADME/6.png)
+
+&emsp;&emsp;经过对CSS的检查，我发现了问题所在，我之前的思路是把月份选择器用`flex-basis`固定宽度，把右边俩`Statistic`组件都设置为`flex-grow: 1`来平分剩下的宽度。然而，随着数字长度的增加，宽度的分配会有所改变，从而造成移位，故把样式改为三个组件宽度均为`flex-basis: 34%`，达到固定位置的目的。
+
+&emsp;&emsp;顺便引入`useAnimateNumber`，给统计数字加了个滚动递增的效果。
+
+优化后：
+
+![](./imgForREADME/7.png)
+
+Layout Shift直接归零，看起来流畅多了。
 

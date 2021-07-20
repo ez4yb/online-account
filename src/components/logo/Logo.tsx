@@ -10,7 +10,7 @@ const Logo: FC<LogoProps> = ({size = 'default'}) => {
     return(
         <div className = {`logo logo-${size}`}>
             <Icon icon = {`icon-bookkeeping`}/>
-            <span>轻记账</span>
+            <span>云记账</span>
         </div>
     )
 }
