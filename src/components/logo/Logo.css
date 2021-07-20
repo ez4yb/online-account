@@ -31,3 +31,12 @@
     height: 4rem;
     margin-right: 2rem;
 }
+
+.logo{
+    animation: logo 1.5s ease-in 0s 1 normal forwards;
+}
+
+@keyframes logo{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

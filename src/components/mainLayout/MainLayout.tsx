@@ -12,6 +12,7 @@ import { getSummary } from '../../services/recordHelpler';
 import { updateMonth } from '../provider/reducer/action';
 import { Context } from '../provider/Provider';
 import { Moment } from 'moment';
+import AnimateNumber from '../animateNumber/AnimateNumber';
 
 const {Sider, Content} = Layout;
 const {Item} = Menu;
@@ -52,8 +53,16 @@ const MainLayout: FC = () => {
                             title = "请选择月份"
                             valueRender = {() => <LocaleDatePicker value = {state.month} onChange = {onMonthChange}/>}
                         />
-                        <Statistic title = "总收入" prefix = '¥' value = {monthlySummary.totalIncome}/>
-                        <Statistic title = "总支出" prefix = '¥' value = {monthlySummary.totalExpenditure}/>
+                        <Statistic 
+                            title = "总收入" 
+                            prefix = '¥' 
+                            valueRender = {() => <AnimateNumber num = {monthlySummary.totalIncome}/>}
+                        />
+                        <Statistic 
+                            title = "总支出" 
+                            prefix = '¥' 
+                            valueRender = {() => <AnimateNumber num = {monthlySummary.totalExpenditure}/>}
+                        />
                     </div>
                 </div> 
                 <div className = "body">

@@ -51,16 +51,8 @@ html, #root, .app{
     align-items: center;
 }
   
-.header-category .month-picker {
-    flex-basis: 20rem;
-}
-  
 .header-category .ant-statistic {
-    flex-grow: 1;
-}
-  
-.header-category .ant-statistic {
-    flex-grow: 1;
+    flex-basis: 33%;
 }
 
 .body{
